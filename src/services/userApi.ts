@@ -1,4 +1,3 @@
-import { FetchBaseQueryArgs } from "@reduxjs/toolkit/dist/query/fetchBaseQuery";
 import {
   createApi,
   fetchBaseQuery,
