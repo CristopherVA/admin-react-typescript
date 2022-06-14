@@ -39,7 +39,7 @@ const UserPage: FC = () => {
   // getUser
   const { data, isLoading, isError, isFetching, isSuccess, refetch } =
     useGetUserQuery(dataPagination);
-  let countUser: number = data?.count[0].length || 0;
+  let countUser = data?.count as Number;
 
   // Get one user
   const handleGetOneUser = (id: number) => {

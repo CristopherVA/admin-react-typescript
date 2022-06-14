@@ -14,11 +14,8 @@ import {
   useGetUserQuery,
   useUpdateUserMutation,
 } from "../../services/userApi";
-import { DataUser } from "../../interfaces/index";
 
 import { ToastError, ToastSuccess } from "../../components/Toast";
-
-import { useSelector } from "react-redux";
 
 const AddUserPage = () => {
   const [error, setError] = useState<boolean>(false);

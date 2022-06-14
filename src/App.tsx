@@ -11,20 +11,24 @@ function App() {
 
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  const { refetch } = useGetUserQuery()
+  const user: string = localStorage.getItem("user") || '';
+  
+
+  const { refetch } = useGetUserQuery({to: "0", from: "5"});
 
   useEffect(() => {
-    if (token) {
-      navigate("/");
-      refetch();
+    if (!token) {
+      navigate("/auth");
     } else{
-      navigate("/login");
+      const dataUser = JSON.parse(user) || {};
+      navigate("/", {state: dataUser});
+      refetch();
     }
-  }, []); 
+  }, [token]);
 
   return (
     <Routes>
-      {!token && <Route path="login" element={<LoginPage />} />}
+      {!token && <Route path="/login" element={<LoginPage />} />}
 
       {token && (
         <Route path="/" element={<Layout />}>

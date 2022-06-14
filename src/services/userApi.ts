@@ -11,10 +11,12 @@ import {
   UpdateDataForm,
 } from "../interfaces/index";
 
+
+
 export const userApi = createApi({
   reducerPath: "user",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:8000",
+    baseUrl: "https://api-admin-v1.herokuapp.com/"
   }),
   endpoints: (bulder) => ({
     getUser: bulder.query<UserInterface, Pagination>({
@@ -24,7 +26,7 @@ export const userApi = createApi({
       query: (id) => `/api/user/${id}`,
       keepUnusedDataFor: 0
     }),
-    addUser: bulder.mutation<Mutation, DataUser>({
+    addUser: bulder.mutation<void, DataUser>({
       query: (data) => ({
         url: "/api/user/create",
         method: "POST",
@@ -34,9 +36,9 @@ export const userApi = createApi({
         body: data,
       }),      
     }),
-    updateUser: bulder.mutation<Mutation, UpdateDataForm>({
+    updateUser: bulder.mutation<void, UpdateDataForm>({
       query: ({ id, data }) => ({
-        url: `/api/user/${id}`,
+        url: `/api/user/update/${id}`,
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

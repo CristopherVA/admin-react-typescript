@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { Auth } from "../../interfaces";
 import { useLoginMutation } from "../../services/authApi";
 
 const LoginPage = () => {
   const [error, setError] = useState("");
+
   const navigate = useNavigate();
 
   const {
@@ -16,25 +16,20 @@ const LoginPage = () => {
 
   const [login] = useLoginMutation();
 
-  const onSubmit = async (data: Auth): Promise<void> => {
-    await login(data)
-      .then((res) => {
-        if (res.error) {
-          // Seteando error
-          const { error } = res;
-          const { data } = error;
-          setError(data.msg);
-        }
-
-        if (res.data) {
-          const { data } = res || {};
-          const { token, id, name, email } = data || {};
-          localStorage.setItem("token", token);
-          localStorage.setItem("user", JSON.stringify({ id, name, email }));
-          navigate("/");
-        }
-      })
-      .catch((err) => console.log(err));
+  const onSubmit = async (data: any): Promise<void> => {
+    await login(data).then(({ data, error }: any) => {
+      const { token, ...rest } = data || {};
+      const { data: dataError, status } = error || {};
+      const { msg } = dataError || '';    
+      if(error){
+        setError(msg);
+      } else {
+        localStorage.setItem("token", token || '');
+        localStorage.setItem("user", JSON.stringify(rest) || '');
+        navigate("/");
+      }
+      
+    })
   };
 
   return (

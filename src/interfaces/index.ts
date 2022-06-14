@@ -1,5 +1,5 @@
 export interface UserInterface {
-  count: Array<[]>;
+  count: Number;
   user: Array<DataUser>;
   ok: Boolean;
   msg: String;
@@ -30,8 +30,6 @@ export interface GetOneUser {
 export type Mutation = {
   data: Object;
 }
-
-
 
 export interface UpdateDataForm {
   id: Number;
