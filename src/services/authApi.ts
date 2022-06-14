@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Auth } from "../interfaces";
-;
+
+
+// "https://api-admin-v1.herokuapp.com/"
 
 export const authApi = createApi({
   reducerPath: "auth",

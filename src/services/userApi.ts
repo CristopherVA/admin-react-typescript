@@ -1,7 +1,4 @@
-import {
-  createApi,
-  fetchBaseQuery,
-} from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
   UserInterface,
   Pagination,
@@ -11,12 +8,10 @@ import {
   UpdateDataForm,
 } from "../interfaces/index";
 
-
-
 export const userApi = createApi({
   reducerPath: "user",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://api-admin-v1.herokuapp.com/"
+    baseUrl: "https://api-admin-v1.herokuapp.com/",
   }),
   endpoints: (bulder) => ({
     getUser: bulder.query<UserInterface, Pagination>({
@@ -24,7 +19,7 @@ export const userApi = createApi({
     }),
     getOneUser: bulder.query<GetOneUser, number>({
       query: (id) => `/api/user/${id}`,
-      keepUnusedDataFor: 0
+      keepUnusedDataFor: 0,
     }),
     addUser: bulder.mutation<void, DataUser>({
       query: (data) => ({
@@ -34,7 +29,7 @@ export const userApi = createApi({
           "Content-Type": "application/json",
         },
         body: data,
-      }),      
+      }),
     }),
     updateUser: bulder.mutation<void, UpdateDataForm>({
       query: ({ id, data }) => ({

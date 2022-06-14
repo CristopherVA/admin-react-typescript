@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
@@ -51,7 +51,7 @@ const Sidebar = () => {
                   className="flex-1 ml-3 text-left whitespace-nowrap"
                   sidebar-toggle-item=""
                 >
-                  User
+                  Usuarios
                 </span>
                 <svg
                   sidebar-toggle-item=""
@@ -73,7 +73,7 @@ const Sidebar = () => {
                     to="user/create"
                     className="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
-                    Add User
+                    Agregar
                   </Link>
                 </li>
                 <li>
@@ -81,7 +81,7 @@ const Sidebar = () => {
                     to="user"
                     className="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
-                    ListUser
+                    Listar
                   </Link>
                 </li>
                 

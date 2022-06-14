@@ -12,8 +12,6 @@ function App() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const user: string = localStorage.getItem("user") || '';
-  
-
   const { refetch } = useGetUserQuery({to: "0", from: "5"});
 
   useEffect(() => {

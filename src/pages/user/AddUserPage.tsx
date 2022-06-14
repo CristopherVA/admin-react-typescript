@@ -69,8 +69,10 @@ const AddUserPage = () => {
   useEffect(() => {
     if (confirmLocationUpdate(location.pathname, userId)) {
       return handleSetValue(data);
+    } else {
+      return reset();
     }
-  }, [data]);
+  }, [location.pathname, data]);
 
   const onSubmit = async (data: any): Promise<void> => {
     switch (location.pathname) {
@@ -358,63 +360,69 @@ const AddUserPage = () => {
                 </p>
               )}
             </div>
-            <div className="mb-6">
-              <label
-                htmlFor="username-success"
-                className={`${
-                  errors.email
-                    ? "block mb-2 text-sm font-medium text-red-700 dark:text-red-500"
-                    : "block mb-2 text-sm font-medium text-grat-700 dark:text-gray-500"
-                }`}
-              >
-                Email
-              </label>
-              <input
-                type="text"
-                className={`${
-                  errors.email
-                    ? "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400border-red-500 "
-                    : "bg-green-50 border border-gray-500 text-gray-900 placeholder-gray-700 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-400"
-                }`}
-                {...register("email", { required: true })}
-                placeholder="Email"
-              />
 
-              {errors.name && (
-                <p className="mt-2 text-sm text-red-600 dark:text-red-500">
-                  <span className="font-medium">Oops!</span> El email es
-                  requirido
-                </p>
-              )}
-            </div>
-            <div className="mb-6">
-              <label
-                htmlFor="username-success"
-                className={`${
-                  errors.password
-                    ? "block mb-2 text-sm font-medium text-red-700 dark:text-red-500"
-                    : "block mb-2 text-sm font-medium text-grat-700 dark:text-gray-500"
-                }`}
-              >
-                Password
-              </label>
-              <input
-                type="password"
-                className={`${
-                  errors.password
-                    ? "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400border-red-500 "
-                    : "bg-green-50 border border-gray-500 text-gray-900 placeholder-gray-700 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-400"
-                }`}
-                {...register("password", { required: true })}
-                placeholder="Password"
-              />
-              {errors.password && (
-                <p className="mt-2 text-sm text-red-600 dark:text-red-500">
-                  <span className="font-medium">Oops!</span> La contraseña es
-                  requirida
-                </p>
-              )}
-            </div>
+            {confirmLocationUpdate(location.pathname, userId) ? null : (
+              <>
+                <div className="mb-6">
+                  <label
+                    htmlFor="username-success"
+                    className={`${
+                      errors.email
+                        ? "block mb-2 text-sm font-medium text-red-700 dark:text-red-500"
+                        : "block mb-2 text-sm font-medium text-grat-700 dark:text-gray-500"
+                    }`}
+                  >
+                    Email
+                  </label>
+                  <input
+                    type="text"
+                    className={`${
+                      errors.email
+                        ? "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400border-red-500 "
+                        : "bg-green-50 border border-gray-500 text-gray-900 placeholder-gray-700 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-400"
+                    }`}
+                    {...register("email", { required: true })}
+                    placeholder="Email"
+                  />
+
+                  {errors.name && (
+                    <p className="mt-2 text-sm text-red-600 dark:text-red-500">
+                      <span className="font-medium">Oops!</span> El email es
+                      requirido
+                    </p>
+                  )}
+                </div>
+
+                <div className="mb-6">
+                  <label
+                    htmlFor="username-success"
+                    className={`${
+                      errors.password
+                        ? "block mb-2 text-sm font-medium text-red-700 dark:text-red-500"
+                        : "block mb-2 text-sm font-medium text-grat-700 dark:text-gray-500"
+                    }`}
+                  >
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    className={`${
+                      errors.password
+                        ? "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400border-red-500 "
+                        : "bg-green-50 border border-gray-500 text-gray-900 placeholder-gray-700 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-400"
+                    }`}
+                    {...register("password", { required: true })}
+                    placeholder="Password"
+                  />
+                  {errors.password && (
+                    <p className="mt-2  text-sm text-red-600 dark:text-red-500">
+                      <span className="font-medium">Oops!</span> La contraseña
+                      es requirida
+                    </p>
+                  )}
+                </div>
+              </>
+            )}
             <div className="mb-6">
               <label
                 htmlFor="username-success"
